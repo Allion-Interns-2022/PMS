@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Application.MedicalRecordRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MedicalRecordRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Application.PatientRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PatientRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Application.UnitOfWork" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAACAABAAAAAAAAQAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Application.UserRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Core.GenericRepository&lt;T&gt;">
+    <Position X="4.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Domain.Common.BaseAuditableEntity">
+    <Position X="10.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Domain.Common.BaseEntity">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Domain.Entities.MedicalRecord">
+    <Position X="10.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Domain.Entities.Patient">
+    <Position X="13.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Domain.Entities.PatientValidator" Collapsed="true">
+    <Position X="18.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Domain.Entities.User" Collapsed="true">
+    <Position X="16" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Infrastructure.PMSContext" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="Application.Interface.IMedicalRecordRepository" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IMedicalRecordRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Application.Interface.IPatientRepository" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IPatientRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Application.Interface.IUnitOfWork" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Application.Interface.IUserRepository" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Interface\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Core.Interface.IGenericRepository&lt;T&gt;">
+    <Position X="4.5" Y="3" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
