@@ -147,6 +147,7 @@ namespace PMSWebAPI.Controllers
                 if (existpatient != null)
                 {
                     bool isDeleted = await _unitOfWork.PatientRepository.DeleteEntity(id);
+                                     await _unitOfWork.CompleteAsync();
                     if (isDeleted)
                     {
                         return Ok("Patient is deleted.");

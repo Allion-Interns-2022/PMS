@@ -12,9 +12,9 @@ namespace Application
         {
         }
 
-        public async Task<MedicalRecord> GetMedicalRecordByPatientId(int id)
+        public async Task<List<MedicalRecord>> GetMedicalRecordByPatientId(int id)
         {
-            var medicalRecordExist = await _DbSet.Where(m => m.PatientId == id).FirstOrDefaultAsync();
+            var medicalRecordExist = await _DbSet.Where(m => m.PatientId == id).ToListAsync();
             return medicalRecordExist;
         }
 

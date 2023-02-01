@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react';
 import { render } from 'react-dom'
-import { store } from './app/store';
+import { store } from './app/store.ts';
 import { Provider } from 'react-redux';
 import { configureStore, applyMiddleware } from 'redux';
 // import reducer from './reducers/reducer';

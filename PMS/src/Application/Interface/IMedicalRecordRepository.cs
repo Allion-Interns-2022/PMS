@@ -10,6 +10,6 @@ namespace Application.Interface
 {
     public interface IMedicalRecordRepository : IGenericRepository<MedicalRecord>
     {
-        Task<MedicalRecord> GetMedicalRecordByPatientId(int id);
+        Task<List<MedicalRecord>> GetMedicalRecordByPatientId(int id);
     }
 }

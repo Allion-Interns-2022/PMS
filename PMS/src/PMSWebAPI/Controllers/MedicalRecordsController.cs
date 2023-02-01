@@ -52,6 +52,28 @@ namespace PMSWebAPI.Controllers
             }
         }
 
+        // GET api/<MedicalRecordsController>/5
+        [HttpGet("patient/{id}")]
+        public async Task<IActionResult> GetRecordByPatientId(int id)
+        {
+            try
+            {
+                var existMedicalRecord = await _unitOfWork.MedicalRecordRepository.GetMedicalRecordByPatientId(id);
+                if (existMedicalRecord != null)
+                {
+                    return Ok(existMedicalRecord);
+                }
+                else
+                {
+                    return BadRequest("No medical records available for selected patient.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         // POST api/<MedicalRecordsController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] MedicalRecord entity)
