@@ -29,7 +29,7 @@ namespace PMSWebAPI.Controllers
                 var userData = await GetUser(user.Username, user.Password);
                 var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
 
-                if (user != null)
+                if (userData != null && userData.Id != 0)
                 {
                     var claims = new[]
                     {
