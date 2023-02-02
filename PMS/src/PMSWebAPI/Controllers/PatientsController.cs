@@ -1,5 +1,6 @@
 ﻿using Application.Interface;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace PMSWebAPI.Controllers
 {
     [Route("api/patients")]
     [ApiController]
+    [Authorize]
     public class PatientsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
