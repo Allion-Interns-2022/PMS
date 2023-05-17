@@ -21,6 +21,6 @@ namespace Domain.Entities
 
         public int PatientId { get; set; }
 
-        public Patient? Patient { get; set; }
+        //public Patient? Patient { get; set; }
     }
 }

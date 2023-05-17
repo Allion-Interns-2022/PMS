@@ -8,25 +8,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PMSWebAPI.Controllers
 {
-    [Route("api/patients")]
+    [Route("api/students")]
     [ApiController]
-    [Authorize]
-    public class PatientsController : ControllerBase
+    //[Authorize]
+    public class StudentsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        public PatientsController(IUnitOfWork unitOfWork)
+        public StudentsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/<PatientsController>
+        // GET: api/<StudentsController>
         [HttpGet]
         public async Task <IActionResult> Get()
         {
             try
             {
-                var patientList = await _unitOfWork.PatientRepository.GetAll();
-                return Ok(patientList);
+                var studentList = await _unitOfWork.StudentRepository.GetAll();
+                return Ok(studentList);
             }
             catch (Exception ex)
             {
@@ -34,20 +34,20 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // GET api/<PatientsController>/5
+        // GET api/<StudentsController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var existpatient = await _unitOfWork.PatientRepository.GetById(id);
-                if (existpatient != null)
+                var existstudent = await _unitOfWork.StudentRepository.GetById(id);
+                if (existstudent != null)
                 {
-                    return Ok(existpatient);
+                    return Ok(existstudent);
                 }
                 else
                 {
-                    return BadRequest("Patient is not available.");
+                    return BadRequest("Student is not available.");
                 }
             }
             catch (Exception ex)
@@ -61,14 +61,14 @@ namespace PMSWebAPI.Controllers
         {
             try
             {
-                var existpatient = await _unitOfWork.PatientRepository.GetPatientByName(name);
-                if (existpatient != null)
+                var existstudent = await _unitOfWork.StudentRepository.GetStudentByName(name);
+                if (existstudent != null)
                 {
-                    return Ok(existpatient);
+                    return Ok(existstudent);
                 }
                 else
                 {
-                    return BadRequest("Patient is not available.");
+                    return BadRequest("Student is not available.");
                 }
             }
             catch (Exception ex)
@@ -76,17 +76,17 @@ namespace PMSWebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        // POST api/<PatientsController>
+        // POST api/<StudentsController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Patient entity)
+        public async Task<IActionResult> Post([FromBody] HostelStudent entity)
         {
             try
             {
-                bool isAdded = await _unitOfWork.PatientRepository.AddEntity(entity);
+                bool isAdded = await _unitOfWork.StudentRepository.AddEntity(entity);
                                await _unitOfWork.CompleteAsync();
                 if (isAdded)
                 {
-                    return Ok("Patient is added.");
+                    return Ok("Student is added.");
                 }
                 else
                 {
@@ -99,29 +99,35 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // PUT api/<PatientsController>/5
+        // PUT api/<StudentsController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Patient entity)
+        public async Task<IActionResult> Put(int id, [FromBody] HostelStudent entity)
         {
             try
             {
-                var existpatient = await _unitOfWork.PatientRepository.GetById(id);
-                if (existpatient != null)
+                var existstudent = await _unitOfWork.StudentRepository.GetById(id);
+                if (existstudent != null)
                 {
-                    existpatient.Id = id;
-                    existpatient.Name = entity.Name;
-                    existpatient.DOB = entity.DOB;
-                    existpatient.WeightKG = entity.WeightKG;
-                    existpatient.HeightCM = entity.HeightCM;
-                    existpatient.Address = entity.Address;
-                    existpatient.Contact = entity.Contact;
-                    existpatient.EmergencyContact = entity.EmergencyContact;
+                    existstudent.Id = id;
+                    existstudent.FullName = entity.FullName;
+                    existstudent.NIC = entity.NIC;
+                    existstudent.Gender = entity.Gender;
+                    existstudent.Address = entity.Address;
+                    existstudent.Contact = entity.Contact;
+                    existstudent.Distance = entity.Distance;
+                    existstudent.Remarks = entity.Remarks;
+                    existstudent.SubmitDate = entity.SubmitDate;
+                    existstudent.MaritalStatus = entity.MaritalStatus;
+                    existstudent.FatherOccupation = entity.FatherOccupation;
+                    existstudent.MotherOccupation = entity.MotherOccupation;
+                    existstudent.FatherIncome = entity.FatherIncome;
+                    existstudent.MotherIncome = entity.MotherIncome;
 
-                    bool isEdited = await _unitOfWork.PatientRepository.UpdateEntity(existpatient);
+                    bool isEdited = await _unitOfWork.StudentRepository.UpdateEntity(existstudent);
                                     await _unitOfWork.CompleteAsync();
                     if (isEdited)
                     {
-                        return Ok("Patient is updated.");
+                        return Ok("Student is updated.");
                     }
                     else
                     {
@@ -130,7 +136,7 @@ namespace PMSWebAPI.Controllers
                 }
                 else
                 {
-                    return BadRequest("Patient is not available.");
+                    return BadRequest("Student is not available.");
                 }
             }
             catch (Exception ex)
@@ -139,20 +145,20 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // DELETE api/<PatientsController>/5
+        // DELETE api/<StudentsController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var existpatient = await _unitOfWork.PatientRepository.GetById(id);
-                if (existpatient != null)
+                var existstudent = await _unitOfWork.StudentRepository.GetById(id);
+                if (existstudent != null)
                 {
-                    bool isDeleted = await _unitOfWork.PatientRepository.DeleteEntity(id);
+                    bool isDeleted = await _unitOfWork.StudentRepository.DeleteEntity(id);
                                      await _unitOfWork.CompleteAsync();
                     if (isDeleted)
                     {
-                        return Ok("Patient is deleted.");
+                        return Ok("Student is deleted.");
                     }
                     else
                     {
@@ -161,7 +167,7 @@ namespace PMSWebAPI.Controllers
                 }
                 else
                 {
-                    return BadRequest("Patient is not available.");
+                    return BadRequest("Student is not available.");
                 }
             }
             catch (Exception ex)

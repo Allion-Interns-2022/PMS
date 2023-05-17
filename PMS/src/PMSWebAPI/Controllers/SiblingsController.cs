@@ -7,24 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PMSWebAPI.Controllers
 {
-    [Route("api/medicalrecords")]
+    [Route("api/siblings")]
     [ApiController]
-    [Authorize]
-    public class MedicalRecordsController : ControllerBase
+    //[Authorize]
+    public class SiblingsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        public MedicalRecordsController(IUnitOfWork unitOfWork)
+        public SiblingsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        // GET: api/<MedicalRecordsController>
+        // GET: api/<SiblingsController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var medicalRecordList = await _unitOfWork.MedicalRecordRepository.GetAll();
-                return Ok(medicalRecordList);
+                var siblingList = await _unitOfWork.SiblingRepository.GetAll();
+                return Ok(siblingList);
             }
             catch (Exception ex)
             {
@@ -32,20 +32,20 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // GET api/<MedicalRecordsController>/5
+        // GET api/<SiblingsController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var existMedicalRecord = await _unitOfWork.MedicalRecordRepository.GetById(id);
-                if (existMedicalRecord != null)
+                var existSibling = await _unitOfWork.SiblingRepository.GetById(id);
+                if (existSibling != null)
                 {
-                    return Ok(existMedicalRecord);
+                    return Ok(existSibling);
                 }
                 else
                 {
-                    return BadRequest("Medical Record is not available");
+                    return BadRequest("Sibling is not available");
                 }
             }
             catch (Exception ex)
@@ -54,20 +54,20 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // GET api/<MedicalRecordsController>/5
-        [HttpGet("patient/{id}")]
-        public async Task<IActionResult> GetRecordByPatientId(int id)
+        // GET api/<SiblingsController>/5
+        [HttpGet("student/{id}")]
+        public async Task<IActionResult> GetSiblingByStudentId(int id)
         {
             try
             {
-                var existMedicalRecord = await _unitOfWork.MedicalRecordRepository.GetMedicalRecordByPatientId(id);
-                if (existMedicalRecord != null)
+                var existSibling = await _unitOfWork.SiblingRepository.GetSiblingByStudentId(id);
+                if (existSibling != null)
                 {
-                    return Ok(existMedicalRecord);
+                    return Ok(existSibling);
                 }
                 else
                 {
-                    return BadRequest("No medical records available for selected patient.");
+                    return BadRequest("No siblings available for selected student.");
                 }
             }
             catch (Exception ex)
@@ -76,18 +76,18 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // POST api/<MedicalRecordsController>
+        // POST api/<SiblingsController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] MedicalRecord entity)
+        public async Task<IActionResult> Post([FromBody] Sibling entity)
         {
             try
             {
-                bool isAdded = await _unitOfWork.MedicalRecordRepository.AddEntity(entity);
+                bool isAdded = await _unitOfWork.SiblingRepository.AddEntity(entity);
                            await _unitOfWork.CompleteAsync();
 
                 if (isAdded)
                 {
-                    return Ok("Medical Record is added.");
+                    return Ok("Sibling is added.");
                 }
                 else
                 {
@@ -100,29 +100,27 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // PUT api/<MedicalRecordsController>/5
+        // PUT api/<SiblingsController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] MedicalRecord entity)
+        public async Task<IActionResult> Put(int id, [FromBody] Sibling entity)
         {
             try
             {
-                var existMedicalRecord = await _unitOfWork.MedicalRecordRepository.GetById(id);
+                var existSibling = await _unitOfWork.SiblingRepository.GetById(id);
 
-                if (existMedicalRecord != null)
+                if (existSibling != null)
                 {
-                    existMedicalRecord.SampleCollectedDate = entity.SampleCollectedDate;
-                    existMedicalRecord.SugarMmol = entity.SugarMmol;
-                    existMedicalRecord.TemperatureCelcius = entity.TemperatureCelcius;
-                    existMedicalRecord.PlateletMmol = entity.PlateletMmol;
-                    existMedicalRecord.HemoglobinGdl = entity.HemoglobinGdl;
-                    existMedicalRecord.PatientId = entity.PatientId;
+                    existSibling.FullName = entity.FullName;
+                    existSibling.EducationalInstitute = entity.EducationalInstitute;
+                    existSibling.AcademicYear = entity.AcademicYear;
+                    existSibling.StudentId = entity.StudentId;
 
-                    bool isEdited = await _unitOfWork.MedicalRecordRepository.UpdateEntity(existMedicalRecord);
+                    bool isEdited = await _unitOfWork.SiblingRepository.UpdateEntity(existSibling);
                     await _unitOfWork.CompleteAsync();
 
                     if (isEdited)
                     {
-                        return Ok("Medical Record is updated.");
+                        return Ok("Sibling is updated.");
                     }
                     else
                     {
@@ -131,7 +129,7 @@ namespace PMSWebAPI.Controllers
                 }
                 else
                 {
-                    return BadRequest("Medical Record is not available.");
+                    return BadRequest("Sibling is not available.");
                 }
             }
             catch (Exception ex)
@@ -140,21 +138,21 @@ namespace PMSWebAPI.Controllers
             }
         }
 
-        // DELETE api/<MedicalRecordsController>/5
+        // DELETE api/<SiblingsController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var existMedicalRecord = await _unitOfWork.MedicalRecordRepository.GetById(id);
-                if (existMedicalRecord != null)
+                var existSibling = await _unitOfWork.SiblingRepository.GetById(id);
+                if (existSibling != null)
                 {
-                    bool isDeleted = await _unitOfWork.MedicalRecordRepository.DeleteEntity(id);
+                    bool isDeleted = await _unitOfWork.SiblingRepository.DeleteEntity(id);
                     await _unitOfWork.CompleteAsync();
 
                     if (isDeleted)
                     {
-                        return Ok("Medical Record is deleted.");
+                        return Ok("Sibling is deleted.");
                     }
                     else
                     {
@@ -163,7 +161,7 @@ namespace PMSWebAPI.Controllers
                 }
                 else
                 {
-                    return BadRequest("Medical Record is not available.");
+                    return BadRequest("Sibling is not available.");
                 }
             }
             catch (Exception ex)

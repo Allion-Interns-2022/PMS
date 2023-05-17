@@ -13,15 +13,15 @@ namespace Application
     {
         protected PMSContext _context { get; set; }
         public IUserRepository UserRepository { get; private set; }
-        public IPatientRepository PatientRepository { get; private set; }
-        public IMedicalRecordRepository MedicalRecordRepository { get; private set; }
+        public IStudentRepository StudentRepository { get; private set; }
+        public ISiblingRepository SiblingRepository { get; private set; }
 
         public UnitOfWork(PMSContext context)
         {
             _context = context;
             UserRepository = new UserRepository(_context);
-            PatientRepository = new PatientRepository(_context);
-            MedicalRecordRepository= new MedicalRecordRepository(_context);
+            StudentRepository = new StudentRepository(_context);
+            SiblingRepository = new SiblingRepository(_context);
         }
         public async Task CompleteAsync()
         {

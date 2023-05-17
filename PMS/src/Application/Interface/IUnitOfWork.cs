@@ -9,8 +9,8 @@ namespace Application.Interface
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
-        IPatientRepository PatientRepository { get; }
-        IMedicalRecordRepository MedicalRecordRepository { get; }
+        IStudentRepository StudentRepository { get; }
+        ISiblingRepository SiblingRepository { get; }
         Task CompleteAsync();
     }
 }

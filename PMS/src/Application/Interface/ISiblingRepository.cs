@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Interface
 {
-    public interface IMedicalRecordRepository : IGenericRepository<MedicalRecord>
+    public interface ISiblingRepository : IGenericRepository<Sibling>
     {
-        Task<List<MedicalRecord>> GetMedicalRecordByPatientId(int id);
+        Task<List<Sibling>> GetSiblingByStudentId(int id);
     }
 }
